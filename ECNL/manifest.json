@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "ECNL Solving Colors Helper",
+  "version": "1.6.0",
+  "description": "Solves the color puzzle, refreshes a trailing username 1 before clicking login, and retries server 503 responses.",
+  "host_permissions": [
+    "https://ecnlmediamarket.com/*",
+    "https://www.ecnlmediamarket.com/*"
+  ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
+    "default_title": "Hard refresh this tab"
+  },
+  "commands": {
+    "hard-refresh-current-tab": {
+      "suggested_key": "Ctrl+Shift+Y",
+      "description": "Hard refresh the current tab"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://ecnlmediamarket.com/*",
+        "https://www.ecnlmediamarket.com/*"
+      ],
+      "js": [
+        "site-guard.js",
+        "solving-colors.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
